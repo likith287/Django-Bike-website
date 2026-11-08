@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}{{ bike.brand }} {{ bike.name }} | REVOLT{% endblock %}
+{% block content %}
+<section class="detail-wrap">
+  <a class="back-link" href="{% url 'bike_list' %}">← Back to all bikes</a>
+  <div class="detail-grid">
+    <div class="detail-image">{% if bike.image_url %}<img src="{{ bike.image_url }}" alt="{{ bike.brand }} {{ bike.name }}">{% else %}<div class="image-placeholder">REVOLT</div>{% endif %}</div>
+    <div class="detail-copy">
+      <p class="eyebrow">{{ bike.category }} MOTORCYCLE</p>
+      <p class="bike-brand">{{ bike.brand }}</p>
+      <h1>{{ bike.name }}</h1>
+      <p class="detail-price">₹{{ bike.price|floatformat:0 }}</p>
+      <div class="spec-row"><div><small>ENGINE</small><strong>{{ bike.engine_cc }} cc</strong></div><div><small>CATEGORY</small><strong>{{ bike.category }}</strong></div></div>
+      <p class="detail-description">{{ bike.description }}</p>
+      <a class="btn btn-primary" href="{% url 'contact' %}?subject={{ bike.brand }}%20{{ bike.name }}">Enquire about this bike ↗</a>
+      <p class="fine-print">Listed price is a sample for this demo website. Confirm actual pricing and availability with a dealer.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

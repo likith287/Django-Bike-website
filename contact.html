@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Contact REVOLT{% endblock %}
+{% block content %}
+<section class="page-hero"><p class="eyebrow">LET'S TALK BIKES</p><h1>Start a <span>conversation.</span></h1><p>Have a question about a bike? Send us a message using the form below.</p></section>
+<section class="contact-section">
+  <div class="contact-aside"><p class="eyebrow">GET IN TOUCH</p><h2>Your next ride<br>starts with a hello.</h2><p>Ask about models, specifications, or availability. This demo saves messages in the local database.</p><div class="contact-note"><span>01</span><p><strong>Browse first</strong><br>Compare the bikes in our collection.</p></div><div class="contact-note"><span>02</span><p><strong>Ask away</strong><br>We'll keep your enquiry recorded in the admin panel.</p></div></div>
+  <form class="contact-form" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-field"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% if field.errors %}<p class="form-error">{{ field.errors|join:", " }}</p>{% endif %}</div>
+    {% endfor %}
+    <button class="btn btn-primary" type="submit">Send message ↗</button>
+  </form>
+</section>
+{% endblock %}

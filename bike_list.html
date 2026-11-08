@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Our Bikes | REVOLT{% endblock %}
+{% block content %}
+<section class="page-hero"><p class="eyebrow">THE REVOLT COLLECTION</p><h1>Choose your <span>ride.</span></h1><p>Explore the collection and find a bike that matches your style.</p></section>
+<section class="section listing-section">
+  <form method="get" class="filter-bar">
+    <input type="search" name="q" value="{{ query }}" placeholder="Search bikes or brands..." aria-label="Search bikes">
+    <select name="category" aria-label="Filter by category">
+      <option value="">All categories</option>
+      {% for value, label in categories %}<option value="{{ value }}" {% if selected_category == value %}selected{% endif %}>{{ label }}</option>{% endfor %}
+    </select>
+    <button class="btn btn-primary" type="submit">Search ↗</button>
+    {% if query or selected_category %}<a class="clear-link" href="{% url 'bike_list' %}">Clear</a>{% endif %}
+  </form>
+  <p class="results-count">{{ bikes|length }} bike{{ bikes|length|pluralize }} found</p>
+  <div class="bike-grid">
+    {% for bike in bikes %}{% include "bikes/partials/bike_card.html" %}{% empty %}
+      <div class="empty-state"><h3>No bikes found</h3><p>Try another search or clear your filters.</p><a class="text-link" href="{% url 'bike_list' %}">Show all bikes →</a></div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

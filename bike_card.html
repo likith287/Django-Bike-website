@@ -1,0 +1,11 @@
+<article class="bike-card">
+  <a class="bike-card-image" href="{% url 'bike_detail' bike.pk %}">
+    {% if bike.image_url %}<img src="{{ bike.image_url }}" alt="{{ bike.brand }} {{ bike.name }}" loading="lazy">{% else %}<div class="image-placeholder">REVOLT</div>{% endif %}
+    <span class="category-pill">{{ bike.category }}</span>
+  </a>
+  <div class="bike-card-info">
+    <p class="bike-brand">{{ bike.brand }} · {{ bike.engine_cc }} CC</p>
+    <h3>{{ bike.name }}</h3>
+    <div class="card-bottom"><p class="price">₹{{ bike.price|floatformat:0 }}</p><a class="round-arrow" href="{% url 'bike_detail' bike.pk %}" aria-label="View {{ bike.name }}">↗</a></div>
+  </div>
+</article>

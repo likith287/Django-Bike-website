@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}REVOLT | Find Your Ride{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow"><span class="eyebrow-line"></span> BUILT FOR THE OPEN ROAD</p>
+    <h1>FIND YOUR<br><span>FREEDOM.</span></h1>
+    <p class="hero-text">More than a machine. Find the bike that fits your journey, your style, and your next big adventure.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{% url 'bike_list' %}">Explore the collection <span>↗</span></a>
+      <a class="text-link" href="{% url 'contact' %}">Talk to our team →</a>
+    </div>
+    <div class="hero-stats">
+      <div><strong>06<span>+</span></strong><small>BIKES TO EXPLORE</small></div>
+      <div><strong>04</strong><small>BIKE CATEGORIES</small></div>
+      <div><strong>100<span>%</span></strong><small>YOUR NEXT CHAPTER</small></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-image"></div>
+    <div class="image-tag"><span class="tag-dot"></span> YOUR NEXT RIDE STARTS HERE</div>
+    <div class="hero-vertical">RIDE BEYOND THE ORDINARY</div>
+    <div class="hero-number">01 <span>/ 04</span></div>
+  </div>
+  <div class="hero-bg-word">RIDE</div>
+</section>
+<section class="section collection">
+  <div class="section-heading">
+    <div><p class="eyebrow">THE COLLECTION</p><h2>Pick your <span>machine.</span></h2></div>
+    <a class="text-link" href="{% url 'bike_list' %}">View all bikes ↗</a>
+  </div>
+  <div class="bike-grid">
+    {% for bike in featured_bikes %}
+      {% include "bikes/partials/bike_card.html" %}
+    {% empty %}
+      <div class="empty-state"><h3>Your collection starts here.</h3><p>Add bikes through the Django admin panel.</p><a class="btn btn-primary" href="/admin/">Open admin ↗</a></div>
+    {% endfor %}
+  </div>
+</section>
+<section class="banner">
+  <p class="eyebrow">YOUR JOURNEY. YOUR RULES.</p>
+  <h2>THE ROAD IS<br><span>CALLING.</span></h2>
+  <a class="btn btn-light" href="{% url 'bike_list' %}">Find your bike ↗</a>
+</section>
+{% endblock %}
